@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed = 5.0f;
-    public float rotationSpeed = 720.0f;
+
+    Rigidbody m_Rigidbody;
+    public float movementSpeed = 150.0f;
+    public Vector3 rotationSpeed = new Vector3(0, 720, 0);
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -22,12 +24,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 facing = new Vector3(horizontalInput, 0, verticalInput);
         facing.Normalize();
 
-        transform.Translate(facing * movementSpeed * Time.deltaTime, Space.World);
+        m_Rigidbody.MovePosition(transform.position + facing * Time.deltaTime * movementSpeed);
 
-        if (facing != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(facing, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        }
     }
 }
