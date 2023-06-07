@@ -14,7 +14,7 @@ public class FollowPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Vector3 playerPos = player1.transform.position;
         Vector3 fromAItoPlayer = playerPos - transform.position;

@@ -11,23 +11,20 @@ public class FollowBall : MonoBehaviour
 
     public bool currMoving = false;
     public float movementSpeed = 150.0f;
-    public Vector3 offset = new Vector3(0, 4, 0);
+    public Vector3 offset = new Vector3(0, 3, 0);
     // Start is called before the first frame update
     void Start()
     {
 
         currPlayer = player1;
         currTarget = player2;
-        Debug.Log(player1.transform.position);
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if(!currMoving)
         {
-            Debug.Log("CURR POS");
-            Debug.Log(transform.position);
             Vector3 fromBallToPlayer = currPlayer.transform.position + offset - transform.position;
             fromBallToPlayer.Normalize();
             //transform.Translate(transform.position + fromBallToPlayer * Time.deltaTime * movementSpeed, Space.World);
